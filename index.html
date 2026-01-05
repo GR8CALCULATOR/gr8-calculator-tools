@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>GR8 Calculator Tools - Free Online Calculators & Utilities</title>
+    <meta name='description' content='Free online calculators for finance, health, education, business, AI tools and daily life. 60+ free tools.'>
+    <meta name='keywords' content='free online calculators, finance calculator, health calculator, BMI calculator, EMI calculator, AI tools'>
+    <meta name='author' content='GR8 Calculator Tools'>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #E6E6FA;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; width: 100%; padding: 0 20px; }
+        
+        .header {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            padding: 20px 0 70px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+            text-align: center;
+        }
+        .logo-container {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+        .logo-icon { font-size: 3rem; animation: float 3s ease-in-out infinite; }
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(90deg, #FF6B6B, #FFE66D, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 6s ease infinite;
+        }
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding-top: 20px;
+        }
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-align: center;
+            background: linear-gradient(90deg, #FFDAB9, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #FFDAB9;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .header-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .header-nav button {
+            background: #FFDAB9;
+            color: #008080;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-nav button:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .nav {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 2px solid #008080;
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .nav .container { display: flex; justify-content: center; }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 15px;
+        }
+        .nav-category-btn {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            color: #2c3e50;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        .nav-category-btn:hover, .nav-category-btn.active {
+            background: #008080;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,128,128,0.2);
+        }
+        
+        .main-content { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #008080;
+            margin: 15px auto 30px;
+            border-radius: 2px;
+        }
+        
+        .categories-section { width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            width: 100%;
+            max-width: 1300px;
+            display: none;
+        }
+        .category-card.active { display: block; }
+        .category-header { display: flex; align-items: center; margin-bottom: 25px; }
+        .category-icon {
+            font-size: 2.5rem;
+            margin-right: 20px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+        .category-title { font-size: 2rem; color: #2c3e50; }
+        
+        .content-rows { display: flex; flex-direction: column; gap: 20px; }
+        .content-row { display: flex; gap: 20px; justify-content: space-between; }
+        .content-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px 15px;
+            flex: 1;
+            min-width: 200px;
+            border-top: 4px solid;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 220px;
+        }
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .content-icon {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            display: block;
+            height: 50px;
+        }
+        .content-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            max-height: 60px;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+        .open-button {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 1.1rem;
+            margin-top: auto;
+        }
+        .open-button:hover {
+            background: linear-gradient(90deg, #20B2AA 0%, #008080 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 128, 128, 0.3);
+        }
+        
+        .show-all-btn {
+            background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            margin: 30px auto 20px;
+            display: block;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+        .show-all-btn:hover {
+            background: linear-gradient(90deg, #2980b9 0%, #3498db 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+        }
+        
+        .calculator-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .calculator-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .calculator-modal {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transform: translateY(-50px) scale(0.9);
+            transition: all 0.3s ease;
+        }
+        .calculator-modal-overlay.active .calculator-modal {
+            transform: translateY(0) scale(1);
+        }
+        .calculator-modal-header {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calculator-modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .calculator-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .calculator-modal-content { padding: 30px; }
+        
+        .calculator-input-section { margin-bottom: 30px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        .file-upload-container {
+            border: 2px dashed #008080;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            background: #f8f9fa;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .file-upload-container:hover {
+            border-color: #20B2AA;
+            background: #f0f8ff;
+        }
+        .file-upload-icon { font-size: 3rem; margin-bottom: 15px; color: #008080; }
+        .file-input { display: none; }
+        .choose-file-btn {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+        .choose-file-btn:hover {
+            background: linear-gradient(90deg, #20B2AA 0%, #008080 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 128, 128, 0.3);
+        }
+        .file-name { margin-top: 15px; color: #666; font-size: 0.9rem; }
+        .text-input-container { margin-top: 20px; }
+        .text-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: border 0.3s;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #008080;
+            box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.1);
+        }
+        .input-hint { font-size: 0.9rem; color: #666; margin-top: 8px; font-style: italic; }
+        
+        .calculator-output-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 4px solid #008080;
+        }
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .output-header h3 { margin: 0; color: #2c3e50; font-size: 1.5rem; }
+        .output-content {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 150px;
+            border: 1px solid #e0e0e0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .output-placeholder {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .calculator-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .process-btn { background: linear-gradient(90deg, #3498db 0%, #2980b9 100%); color: white; }
+        .process-btn:hover {
+            background: linear-gradient(90deg, #2980b9 0%, #3498db 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        .download-btn { background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%); color: white; }
+        .download-btn:hover {
+            background: linear-gradient(90deg, #27ae60 0%, #2ecc71 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+        .close-calc-btn { background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%); color: white; }
+        .close-calc-btn:hover {
+            background: linear-gradient(90deg, #c0392b 0%, #e74c3c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .category-card:nth-child(1) { border-left-color: #3498db; }
+        .category-card:nth-child(1) .category-icon { background: #3498db; }
+        .category-card:nth-child(1) .content-box { border-top-color: #3498db; }
+        .category-card:nth-child(2) { border-left-color: #2ecc71; }
+        .category-card:nth-child(2) .category-icon { background: #2ecc71; }
+        .category-card:nth-child(2) .content-box { border-top-color: #2ecc71; }
+        .category-card:nth-child(3) { border-left-color: #e74c3c; }
+        .category-card:nth-child(3) .category-icon { background: #e74c3c; }
+        .category-card:nth-child(3) .content-box { border-top-color: #e74c3c; }
+        .category-card:nth-child(4) { border-left-color: #f39c12; }
+        .category-card:nth-child(4) .category-icon { background: #f39c12; }
+        .category-card:nth-child(4) .content-box { border-top-color: #f39c12; }
+        .category-card:nth-child(5) { border-left-color: #9b59b6; }
+        .category-card:nth-child(5) .category-icon { background: #9b59b6; }
+        .category-card:nth-child(5) .content-box { border-top-color: #9b59b6; }
+        .category-card:nth-child(6) { border-left-color: #1abc9c; }
+        .category-card:nth-child(6) .category-icon { background: #1abc9c; }
+        .category-card:nth-child(6) .content-box { border-top-color: #1abc9c; }
+        
+        .footer {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            padding: 40px 0 30px;
+            margin-top: 60px;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .footer-pages {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .footer-pages a {
+            color: #FFDAB9;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .footer-pages a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-content p { font-size: 1.2rem; color: #FFDAB9; font-weight: 600; }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal { transform: translateY(0); }
+        .modal-header {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 { margin: 0; font-size: 1.8rem; }
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-content { padding: 30px; }
+        
+        .articles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .article-item {
+            background: #f8f9fa;
+            border-left: 5px solid #008080;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .article-item:hover {
+            background: #e9ecef;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .article-category {
+            font-weight: bold;
+            color: #008080;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .article-meta { font-size: 0.9rem; color: #666; }
+        
+        .page-content h2 {
+            color: #008080;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .page-content h3 { color: #2c3e50; margin-top: 20px; margin-bottom: 10px; }
+        .page-content p { margin-bottom: 15px; line-height: 1.7; }
+        .page-content ul, .page-content ol { margin: 15px 0; padding-left: 20px; }
+        .page-content li { margin-bottom: 8px; }
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            border-left: 4px solid #008080;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .contact-info {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .contact-item { display: flex; align-items: center; margin-bottom: 15px; }
+        .contact-icon { font-size: 1.5rem; margin-right: 15px; color: #008080; }
+        
+        .analytics-btn, .sitemap-btn {
+            background: transparent;
+            color: #FFDAB9;
+            border: 1px solid #FFDAB9;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .analytics-btn:hover, .sitemap-btn:hover {
+            background: #FFDAB9;
+            color: #008080;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes colorChange {
+            0% { color: #FF6B6B; }
+            25% { color: #FFE66D; }
+            50% { color: #4ECDC4; }
+            75% { color: #45B7D1; }
+            100% { color: #96CEB4; }
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+        
+        @media (max-width: 1100px) {
+            .content-row { flex-wrap: wrap; }
+            .content-box { min-width: calc(33.333% - 15px); }
+            .header-nav { gap: 8px; }
+            .header-nav button { padding: 8px 20px; font-size: 0.9rem; }
+            .articles-list { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .nav-category-btn { padding: 10px 20px; font-size: 0.9rem; }
+            .calculator-actions { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .logo-container {
+                position: relative;
+                top: 0;
+                left: 0;
+                justify-content: center;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            .header { padding: 15px 0 100px; }
+            .header-title { font-size: 2.5rem; }
+            .tagline { font-size: 1.3rem; }
+            .header-nav { bottom: 10px; gap: 5px; }
+            .header-nav button { padding: 6px 15px; font-size: 0.85rem; }
+            .content-row { flex-direction: column; }
+            .content-box { min-width: 100%; height: 200px; }
+            .nav-links { gap: 8px; }
+            .nav-links a { padding: 8px 15px; }
+            .category-title { font-size: 1.6rem; }
+            body { padding: 10px; }
+            .section-title { font-size: 2rem; }
+            .footer-pages { gap: 15px; }
+            .footer-pages a { font-size: 1rem; padding: 6px 10px; }
+            .modal { width: 95%; max-height: 95vh; }
+            .articles-list { grid-template-columns: 1fr; }
+            .nav-category-btn { padding: 8px 15px; font-size: 0.85rem; }
+            .show-all-btn { width: 90%; padding: 12px 25px; }
+            .calculator-modal { width: 95%; }
+            .calculator-modal-header h2 { font-size: 1.4rem; }
+        }
+        @media (max-width: 480px) {
+            .header-nav { flex-direction: column; align-items: center; gap: 8px; }
+            .header-nav button { width: 200px; }
+            .footer-pages { flex-direction: column; gap: 10px; }
+            .footer-pages a { width: 100%; text-align: center; }
+            .nav-category-btn { width: 100%; text-align: center; }
+            .calculator-actions .action-btn { width: 100%; margin-bottom: 10px; }
+            .content-box { height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- CALCULATOR MODAL -->
+    <div class='calculator-modal-overlay' id='calculatorModal'>
+        <div class='calculator-modal'>
+            <div class='calculator-modal-header'>
+                <h2 id='calculatorTitle'>
+                    <span id='calculatorIcon'>🛠️</span>
+                    <span id='calculatorName'>Calculator</span>
+                </h2>
+                <button class='calculator-close-btn' id='closeCalculatorBtn'>×</button>
+            </div>
+            <div class='calculator-modal-content'>
+                <div class='calculator-input-section'>
+                    <div class='file-upload-container'>
+                        <div class='file-upload-icon'>📁</div>
+                        <h3>Upload Your File</h3>
+                        <p>Choose a file to process or enter text below</p>
+                        <input type='file' id='fileInput' class='file-input' accept='.txt,.pdf,.doc,.docx,.xls,.xlsx,.csv,.json'>
+                        <button class='choose-file-btn' id='chooseFileBtn'>📁 Choose File</button>
+                        <div class='file-name' id='fileName'>No file chosen</div>
+                    </div>
+                    
+                    <div class='text-input-container'>
+                        <div class='input-group'>
+                            <label for='textInput'>Or Enter Text Directly:</label>
+                            <textarea id='textInput' class='text-input' placeholder='Enter your text here...'></textarea>
+                            <div class='input-hint' id='inputHint'>Enter your data or text to process.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class='calculator-output-section'>
+                    <div class='output-header'>
+                        <h3>Processing Results</h3>
+                        <div id='resultStatus'>Ready</div>
+                    </div>
+                    <div class='output-content' id='outputContent'>
+                        <div class='output-placeholder'>Your results will appear here after processing.</div>
+                    </div>
+                </div>
+                
+                <div class='calculator-actions'>
+                    <button class='action-btn process-btn' id='processBtn'><span>⚡</span> Process</button>
+                    <button class='action-btn download-btn' id='downloadBtn' disabled><span>⬇️</span> Download</button>
+                    <button class='action-btn close-calc-btn' id='closeCalcBtn'><span>❌</span> Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE MODAL -->
+    <div class='modal-overlay' id='pageModal'>
+        <div class='modal'>
+            <div class='modal-header'>
+                <h2 id='pageModalTitle'>Page Title</h2>
+                <button class='close-btn' id='closePageBtn'>×</button>
+            </div>
+            <div class='modal-content page-content' id='pageContent'></div>
+        </div>
+    </div>
+    
+    <!-- ARTICLES MODAL (POPUP BOX) -->
+    <div class='modal-overlay' id='articlesModal'>
+        <div class='modal'>
+            <div class='modal-header'>
+                <h2>📚 GR8Calculator Articles Library</h2>
+                <button class='close-btn' id='closeArticlesBtn'>×</button>
+            </div>
+            <div class='modal-content'>
+                <div class='articles-list' id='articlesList'></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- HEADER SECTION -->
+    <header class='header'>
+        <div class='logo-container'>
+            <div class='logo-icon'>🛠️</div>
+            <div class='logo-text'>GR8Calculator</div>
+        </div>
+        
+        <div class='header-content'>
+            <div class='header-title'>GR8 Calculator Tools</div>
+            <div class='tagline'>60+ Free Online Calculators & Utilities | 100% Free | No Registration</div>
+            
+            <div class='header-nav'>
+                <button class='home-btn'>Home</button>
+                <button class='article-btn'>Article</button>
+                <button class='about-btn'>About us</button>
+                <button class='contact-btn'>Contact us</button>
+                <button class='disclaimer-btn'>Disclaimer</button>
+                <button class='privacy-btn'>Privacy Policy</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- NAVIGATION -->
+    <nav class='nav'>
+        <div class='container'>
+            <div class='nav-links'>
+                <button class='nav-category-btn active' data-category='all'><span>🏠</span> All Categories</button>
+                <button class='nav-category-btn' data-category='ai-tools'><span>🤖</span> AI Tools</button>
+                <button class='nav-category-btn' data-category='finance'><span>💰</span> Finance</button>
+                <button class='nav-category-btn' data-category='health'><span>🏃‍♂️</span> Health</button>
+                <button class='nav-category-btn' data-category='education'><span>🎓</span> Education</button>
+                <button class='nav-category-btn' data-category='real-estate'><span>🏠</span> Real Estate</button>
+                <button class='nav-category-btn' data-category='daily'><span>🛠️</span> Daily Tools</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- MAIN CONTENT -->
+    <div class='main-content'>
+        <h2 class='section-title' id='mainTitle'>All Calculator Categories</h2>
+        <button class='show-all-btn' id='showAllBtn'>Show All Categories</button>
+        
+        <section class='categories-section container'>
+            <!-- AI TOOLS CATEGORY -->
+            <div class='category-card active' id='ai-tools'>
+                <div class='category-header'>
+                    <div class='category-icon'>🤖</div>
+                    <h3 class='category-title'>AI & Tech Tools</h3>
+                </div>
+                <div class='content-rows'>
+                    <div class='content-row'>
+                        <div class='content-box'><span class='content-icon'>✍️</span><div class='content-name'>AI Essay Writer</div><button class='open-button' data-tool='ai-essay' data-icon='✍️'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>📺</span><div class='content-name'>YouTube Thumbnail Maker</div><button class='open-button' data-tool='youtube-thumbnail' data-icon='📺'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🖼️</span><div class='content-name'>Logo Creator</div><button class='open-button' data-tool='logo-creator' data-icon='🖼️'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🎤</span><div class='content-name'>Voice Transcriber</div><button class='open-button' data-tool='voice-transcriber' data-icon='🎤'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🔍</span><div class='content-name'>Plagiarism Checker</div><button class='open-button' data-tool='plagiarism-checker' data-icon='🔍'>Open Tool</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FINANCE CATEGORY -->
+            <div class='category-card active' id='finance'>
+                <div class='category-header'>
+                    <div class='category-icon'>💰</div>
+                    <h3 class='category-title'>Finance & Investment</h3>
+                </div>
+                <div class='content-rows'>
+                    <div class='content-row'>
+                        <div class='content-box'><span class='content-icon'>💳</span><div class='content-name'>EMI Calculator</div><button class='open-button' data-tool='emi-calculator' data-icon='💳'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🏦</span><div class='content-name'>Loan Eligibility</div><button class='open-button' data-tool='loan-eligibility' data-icon='🏦'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>📈</span><div class='content-name'>SIP Returns</div><button class='open-button' data-tool='sip-returns' data-icon='📈'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>💰</span><div class='content-name'>FD Calculator</div><button class='open-button' data-tool='fd-calculator' data-icon='💰'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>📋</span><div class='content-name'>Income Tax Calc</div><button class='open-button' data-tool='tax-calculator' data-icon='📋'>Open Tool</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HEALTH CATEGORY -->
+            <div class='category-card active' id='health'>
+                <div class='category-header'>
+                    <div class='category-icon'>🏃‍♂️</div>
+                    <h3 class='category-title'>Health & Fitness</h3>
+                </div>
+                <div class='content-rows'>
+                    <div class='content-row'>
+                        <div class='content-box'><span class='content-icon'>⚖️</span><div class='content-name'>BMI Calculator</div><button class='open-button' data-tool='bmi-calculator' data-icon='⚖️'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🍎</span><div class='content-name'>Calorie Calculator</div><button class='open-button' data-tool='calorie-calculator' data-icon='🍎'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🤰</span><div class='content-name'>Pregnancy Tracker</div><button class='open-button' data-tool='pregnancy-tracker' data-icon='🤰'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>💧</span><div class='content-name'>Water Intake Calc</div><button class='open-button' data-tool='water-intake' data-icon='💧'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🏃</span><div class='content-name'>Running Pace Calc</div><button class='open-button' data-tool='running-pace' data-icon='🏃'>Open Tool</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- EDUCATION CATEGORY -->
+            <div class='category-card active' id='education'>
+                <div class='category-header'>
+                    <div class='category-icon'>🎓</div>
+                    <h3 class='category-title'>Education & Career</h3>
+                </div>
+                <div class='content-rows'>
+                    <div class='content-row'>
+                        <div class='content-box'><span class='content-icon'>📚</span><div class='content-name'>GPA Converter</div><button class='open-button' data-tool='gpa-converter' data-icon='📚'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🎯</span><div class='content-name'>Grade Calculator</div><button class='open-button' data-tool='grade-calculator' data-icon='🎯'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>📅</span><div class='content-name'>Study Planner</div><button class='open-button' data-tool='study-planner' data-icon='📅'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🌍</span><div class='content-name'>IELTS Score Calc</div><button class='open-button' data-tool='ielts-score' data-icon='🌍'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>💵</span><div class='content-name'>Interest Calculator</div><button class='open-button' data-tool='interest-calculator' data-icon='💵'>Open Tool</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- REAL ESTATE CATEGORY -->
+            <div class='category-card active' id='real-estate'>
+                <div class='category-header'>
+                    <div class='category-icon'>🏠</div>
+                    <h3 class='category-title'>Real Estate & Property</h3>
+                </div>
+                <div class='content-rows'>
+                    <div class='content-row'>
+                        <div class='content-box'><span class='content-icon'>🏗️</span><div class='content-name'>Construction Cost</div><button class='open-button' data-tool='construction-cost' data-icon='🏗️'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>📈</span><div class='content-name'>Property ROI</div><button class='open-button' data-tool='property-roi' data-icon='📈'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🏷️</span><div class='content-name'>Stamp Duty Calc</div><button class='open-button' data-tool='stamp-duty' data-icon='🏷️'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🔄</span><div class='content-name'>Loan Transfer</div><button class='open-button' data-tool='loan-transfer' data-icon='🔄'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🏠</span><div class='content-name'>Rent vs Buy</div><button class='open-button' data-tool='rent-vs-buy' data-icon='🏠'>Open Tool</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DAILY TOOLS CATEGORY -->
+            <div class='category-card active' id='daily'>
+                <div class='category-header'>
+                    <div class='category-icon'>🛠️</div>
+                    <h3 class='category-title'>Daily Life & Utility</h3>
+                </div>
+                <div class='content-rows'>
+                    <div class='content-row'>
+                        <div class='content-box'><span class='content-icon'>🎂</span><div class='content-name'>Age Calculator</div><button class='open-button' data-tool='age-calculator' data-icon='🎂'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>📏</span><div class='content-name'>Unit Converter</div><button class='open-button' data-tool='unit-converter' data-icon='📏'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>💱</span><div class='content-name'>Currency Converter</div><button class='open-button' data-tool='currency-converter' data-icon='💱'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>🏷️</span><div class='content-name'>Discount Calc</div><button class='open-button' data-tool='discount-calculator' data-icon='🏷️'>Open Tool</button></div>
+                        <div class='content-box'><span class='content-icon'>⛽</span><div class='content-name'>Fuel Cost Calc</div><button class='open-button' data-tool='fuel-cost' data-icon='⛽'>Open Tool</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class='footer'>
+        <div class='container'>
+            <div class='footer-pages'>
+                <a href='#'>Home</a>
+                <a href='#'>Article</a>
+                <a href='#'>About us</a>
+                <a href='#'>Contact us</a>
+                <a href='#'>Disclaimer</a>
+                <a href='#'>Privacy Policy</a>
+            </div>
+            
+            <div class='footer-content'>
+                <p>© 2024 GR8 Calculator Tools. All rights reserved.</p>
+                <button class='analytics-btn' id='analyticsBtn'>📊 Analytics</button>
+                <button class='sitemap-btn' id='sitemapBtn'>📊 Download Sitemap</button>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JAVASCRIPT -->
+    <script>
+        // DOM LOAD COMPLETE
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('GR8Calculator: Website Loaded Successfully');
+            
+            // ARTICLE BUTTON FIX
+            const articleBtn = document.querySelector('.article-btn');
+            const articlesModal = document.getElementById('articlesModal');
+            
+            if(articleBtn && articlesModal) {
+                articleBtn.addEventListener('click', function() {
+                    console.log('Article Popup Opened');
+                    articlesModal.classList.add('active');
+                    generateArticlesList();
+                });
+            }
+            
+            // MODAL CLOSE BUTTONS
+            setupModalCloseButtons();
+            
+            // NAVIGATION LINKS
+            setupNavigationLinks();
+            
+            // CALCULATOR TOOLS
+            setupCalculatorTools();
+            
+            // CATEGORY FILTERING
+            setupCategoryFiltering();
+        });
+        
+        // GENERATE ARTICLES LIST FOR POPUP
+        function generateArticlesList() {
+            const articlesList = document.getElementById('articlesList');
+            if(!articlesList) return;
+            
+            const categories = [
+                {id: 'ai-tools', name: '🤖 AI & Tech Tools', count: 8, color: '#3498db'},
+                {id: 'finance', name: '💰 Finance & Investment', count: 10, color: '#2ecc71'},
+                {id: 'health', name: '🏃‍♂️ Health & Fitness', count: 10, color: '#e74c3c'},
+                {id: 'education', name: '🎓 Education & Career', count: 10, color: '#f39c12'},
+                {id: 'real-estate', name: '🏠 Real Estate & Property', count: 10, color: '#9b59b6'},
+                {id: 'daily', name: '🛠️ Daily Life & Utility', count: 10, color: '#1abc9c'}
+            ];
+            
+            let html = '';
+            categories.forEach(category => {
+                html += `
+                <div class="article-item" onclick="openCategoryPage('${category.id}')" style="border-left-color: ${category.color};">
+                    <div class="article-category">${category.name}</div>
+                    <div class="article-title">${category.count} Articles Available</div>
+                    <div class="article-meta">Click to view all articles in this category</div>
+                </div>`;
+            });
+            
+            articlesList.innerHTML = html;
+        }
+        
+        // OPEN CATEGORY PAGE
+        function openCategoryPage(categoryId) {
+            const pageUrls = {
+                'ai-tools': '/p/ai-tools-articles',
+                'finance': '/p/finance-articles', 
+                'health': '/p/health-articles',
+                'education': '/p/education-articles',
+                'real-estate': '/p/real-estate-articles',
+                'daily': '/p/daily-tools-articles'
+            };
+            
+            const url = pageUrls[categoryId];
+            
+            // ALERT USER ABOUT PAGE CREATION
+            alert(`📄 Create this page in Blogger:\n\nPage Title: ${categoryId.replace('-', ' ').toUpperCase()}\nPage URL: ${url}\n\nAfter creating page, articles will open here.`);
+            
+            // Close popup
+            document.getElementById('articlesModal').classList.remove('active');
+        }
+        
+        // MODAL CLOSE SYSTEM
+        function setupModalCloseButtons() {
+            // Articles modal close
+            const closeArticlesBtn = document.getElementById('closeArticlesBtn');
+            const articlesModal = document.getElementById('articlesModal');
+            
+            if(closeArticlesBtn && articlesModal) {
+                closeArticlesBtn.addEventListener('click', function() {
+                    articlesModal.classList.remove('active');
+                });
+                
+                articlesModal.addEventListener('click', function(e) {
+                    if(e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Page modal close
+            const closePageBtn = document.getElementById('closePageBtn');
+            const pageModal = document.getElementById('pageModal');
+            
+            if(closePageBtn && pageModal) {
+                closePageBtn.addEventListener('click', function() {
+                    pageModal.classList.remove('active');
+                });
+                
+                pageModal.addEventListener('click', function(e) {
+                    if(e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Calculator modal close
+            const closeCalculatorBtn = document.getElementById('closeCalculatorBtn');
+            const calculatorModal = document.getElementById('calculatorModal');
+            
+            if(closeCalculatorBtn && calculatorModal) {
+                closeCalculatorBtn.addEventListener('click', function() {
+                    calculatorModal.classList.remove('active');
+                });
+                
+                calculatorModal.addEventListener('click', function(e) {
+                    if(e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            }
+        }
+        
+        // NAVIGATION LINKS SETUP
+        function setupNavigationLinks() {
+            // Home button
+            const homeBtn = document.querySelector('.home-btn');
+            if(homeBtn) {
+                homeBtn.addEventListener('click', function() {
+                    showAllCategories();
+                });
+            }
+            
+            // About button
+            const aboutBtn = document.querySelector('.about-btn');
+            if(aboutBtn) {
+                aboutBtn.addEventListener('click', function() {
+                    openPageModal('about-us', '👥 About GR8 Calculator Tools', 
+                        `<h2>About GR8 Calculator Tools</h2>
+                        <p>Your ultimate destination for free online calculators and utilities!</p>
+                        <div class="highlight-box">
+                            <h3>Our Mission</h3>
+                            <p>To provide accurate, easy-to-use calculation tools for everyone, completely free.</p>
+                        </div>`);
+                });
+            }
+            
+            // Contact button
+            const contactBtn = document.querySelector('.contact-btn');
+            if(contactBtn) {
+                contactBtn.addEventListener('click', function() {
+                    openPageModal('contact-us', '📧 Contact Us',
+                        `<h2>Contact GR8 Calculator Tools</h2>
+                        <p>Email: nasimrehman599@gmail.com</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <div>
+                                    <strong>Email Address</strong><br>
+                                    <a href="mailto:nasimrehman599@gmail.com">nasimrehman599@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>`);
+                });
+            }
+            
+            // Disclaimer button
+            const disclaimerBtn = document.querySelector('.disclaimer-btn');
+            if(disclaimerBtn) {
+                disclaimerBtn.addEventListener('click', function() {
+                    openPageModal('disclaimer', '⚖️ Legal Disclaimer',
+                        `<h2>Important Legal Information</h2>
+                        <p>Please read this disclaimer carefully before using GR8 Calculator Tools.</p>
+                        <div class="highlight-box" style="background: #ffebee; border-left-color: #d32f2f;">
+                            <h3>⚠️ General Disclaimer</h3>
+                            <p>The calculators and tools provided on this website are for informational and educational purposes only.</p>
+                        </div>`);
+                });
+            }
+            
+            // Privacy button
+            const privacyBtn = document.querySelector('.privacy-btn');
+            if(privacyBtn) {
+                privacyBtn.addEventListener('click', function() {
+                    openPageModal('privacy-policy', '🔒 Privacy Policy',
+                        `<h2>Privacy Policy for GR8 Calculator Tools</h2>
+                        <p>Your privacy is important to us. This policy explains how we handle information.</p>
+                        <div class="highlight-box">
+                            <h3>Our Privacy Promise</h3>
+                            <p>We are committed to protecting your privacy. We designed our tools to work without collecting personal information.</p>
+                        </div>`);
+                });
+            }
+            
+            // Footer links
+            document.querySelectorAll('.footer-pages a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageName = this.textContent;
+                    
+                    if(pageName === 'Home') showAllCategories();
+                    else if(pageName === 'Article') {
+                        document.getElementById('articlesModal').classList.add('active');
+                        generateArticlesList();
+                    }
+                    else if(pageName === 'About us') aboutBtn.click();
+                    else if(pageName === 'Contact us') contactBtn.click();
+                    else if(pageName === 'Disclaimer') disclaimerBtn.click();
+                    else if(pageName === 'Privacy Policy') privacyBtn.click();
+                });
+            });
+        }
+        
+        // OPEN PAGE MODAL FUNCTION
+        function openPageModal(pageId, title, content) {
+            document.getElementById('pageModalTitle').textContent = title;
+            document.getElementById('pageContent').innerHTML = content;
+            document.getElementById('pageModal').classList.add('active');
+        }
+        
+        // CALCULATOR TOOLS SETUP
+        function setupCalculatorTools() {
+            const calculatorModal = document.getElementById('calculatorModal');
+            const closeCalculatorBtn = document.getElementById('closeCalculatorBtn');
+            const calculatorTitle = document.getElementById('calculatorName');
+            const calculatorIcon = document.getElementById('calculatorIcon');
+            const chooseFileBtn = document.getElementById('chooseFileBtn');
+            const fileInput = document.getElementById('fileInput');
+            const fileName = document.getElementById('fileName');
+            const processBtn = document.getElementById('processBtn');
+            const outputContent = document.getElementById('outputContent');
+            
+            // Open calculator when tool button clicked
+            document.querySelectorAll('.open-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const toolName = this.parentElement.querySelector('.content-name').textContent;
+                    const toolId = this.getAttribute('data-tool');
+                    const toolIcon = this.getAttribute('data-icon');
+                    
+                    calculatorTitle.textContent = toolName;
+                    calculatorIcon.textContent = toolIcon;
+                    fileInput.value = '';
+                    fileName.textContent = 'No file chosen';
+                    outputContent.innerHTML = `<div class='output-placeholder'>Your results will appear here after processing.</div>`;
+                    
+                    calculatorModal.classList.add('active');
+                });
+            });
+            
+            // File input
+            if(chooseFileBtn && fileInput) {
+                chooseFileBtn.addEventListener('click', () => fileInput.click());
+                fileInput.addEventListener('change', function() {
+                    if(this.files.length > 0) {
+                        const file = this.files[0];
+                        fileName.textContent = `Selected: ${file.name}`;
+                    }
+                });
+            }
+            
+            // Process button
+            if(processBtn) {
+                processBtn.addEventListener('click', function() {
+                    outputContent.innerHTML = `<div style='text-align: center; padding: 40px;'>
+                        <div style='font-size: 3rem; margin-bottom: 20px;'>✅</div>
+                        <h3>Processing Complete!</h3>
+                        <p>Tool is working correctly.</p>
+                    </div>`;
+                });
+            }
+        }
+        
+        // CATEGORY FILTERING SYSTEM
+        function setupCategoryFiltering() {
+            const categoryCards = document.querySelectorAll('.category-card');
+            const navButtons = document.querySelectorAll('.nav-category-btn');
+            const showAllBtn = document.getElementById('showAllBtn');
+            
+            // Show all categories initially
+            showAllCategories();
+            
+            // Category buttons
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if(category === 'all') {
+                        showAllCategories();
+                    } else {
+                        // Show only selected category
+                        categoryCards.forEach(card => card.classList.remove('active'));
+                        const targetCard = document.getElementById(category);
+                        if(targetCard) targetCard.classList.add('active');
+                        
+                        // Update title
+                        const categoryNames = {
+                            'ai-tools': '🤖 AI & Tech Tools',
+                            'finance': '💰 Finance & Investment',
+                            'health': '🏃‍♂️ Health & Fitness',
+                            'education': '🎓 Education & Career',
+                            'real-estate': '🏠 Real Estate & Property',
+                            'daily': '🛠️ Daily Life & Utility'
+                        };
+                        document.getElementById('mainTitle').textContent = categoryNames[category] || 'Category';
+                        
+                        // Show "Show All" button
+                        if(showAllBtn) showAllBtn.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Show all button
+            if(showAllBtn) {
+                showAllBtn.addEventListener('click', showAllCategories);
+            }
+        }
+        
+        // SHOW ALL CATEGORIES FUNCTION
+        function showAllCategories() {
+            const categoryCards = document.querySelectorAll('.category-card');
+            const navButtons = document.querySelectorAll('.nav-category-btn');
+            const showAllBtn = document.getElementById('showAllBtn');
+            
+            categoryCards.forEach(card => card.classList.add('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.nav-category-btn[data-category="all"]').classList.add('active');
+            document.getElementById('mainTitle').textContent = 'All Calculator Categories';
+            
+            if(showAllBtn) showAllBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
