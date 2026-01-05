@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us - GR8Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body {
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* EXACT HEADER FROM YOUR WEBSITE */
+        .header-exact {
+            background: linear-gradient(90deg, #008080 0%, #20B2AA 100%);
+            color: white;
+            padding: 20px 0 70px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* LOGO CONTAINER - EXACT POSITION */
+        .logo-exact-container {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* LOGO ICON - EXACT FROM YOUR WEBSITE */
+        .logo-exact-icon {
+            font-size: 48px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* LOGO TEXT - EXACT FROM YOUR WEBSITE */
+        .logo-exact-text {
+            font-size: 40px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #FF6B6B, #FFE66D, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 6s ease infinite;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* HEADER CONTENT - CENTERED */
+        .header-exact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding-top: 20px;
+        }
+        
+        /* MAIN TITLE - EXACT FROM YOUR WEBSITE */
+        .header-exact-title {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #FFDAB9, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* TAGLINE - EXACT FROM YOUR WEBSITE */
+        .tagline-exact {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #FFDAB9;
+        }
+        
+        /* ABOUT US TITLE - HEADER KE NECHE 1 ENTER SPACE */
+        .about-title-container {
+            width: 100%;
+            text-align: center;
+            margin: 50px 0 40px 0; /* 1 ENTER SPACE */
+        }
+        
+        .about-us-title {
+            font-size: 42px; /* Professional large size */
+            color: #008080;
+            font-weight: 800;
+            display: inline-block;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #20B2AA;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        /* MAIN CONTENT CONTAINER - NO ADS SPACES */
+        .main-content-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+        }
+        
+        /* PROFESSIONAL CONTENT BOX - GREEN BORDER */
+        .professional-content-box {
+            background: white;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 3px solid #4CAF50; /* GREEN BORDER */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* HIGHLIGHT HEADING - PROFESSIONAL STYLE */
+        .highlight-heading {
+            font-size: 32px;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+            line-height: 1.3;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f5e9;
+            position: relative;
+        }
+        
+        .highlight-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #4CAF50;
+            border-radius: 2px;
+        }
+        
+        /* PROFESSIONAL TEXT CONTENT */
+        .professional-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        /* BOLD HIGHLIGHTED TEXT */
+        .bold-highlight {
+            font-weight: 700;
+            color: #008080;
+            font-size: 19px;
+            background: #e8f5e9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline;
+        }
+        
+        /* KEY FEATURES SECTION */
+        .key-features {
+            background: #f8f9fa;
+            border-left: 4px solid #4CAF50;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .key-features-title {
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            color: #4CAF50;
+            font-size: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .feature-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            flex: 1;
+        }
+        
+        /* CALL TO ACTION */
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #e0e0e0;
+        }
+        
+        .cta-text {
+            font-size: 20px;
+            color: #008080;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .header-exact-title { font-size: 42px; }
+            .tagline-exact { font-size: 22px; }
+            .logo-exact-text { font-size: 32px; }
+            .about-us-title { font-size: 32px; }
+            .professional-content-box { padding: 30px 20px; }
+            .highlight-heading { font-size: 26px; }
+            .professional-text { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- EXACT HEADER FROM YOUR WEBSITE -->
+    <header class="header-exact">
+        <!-- LOGO - LEFT SIDE -->
+        <div class="logo-exact-container">
+            <div class="logo-exact-icon">🛠️</div>
+            <div class="logo-exact-text">GR8Calculator</div>
+        </div>
+        
+        <!-- CENTER CONTENT -->
+        <div class="header-exact-content">
+            <div class="header-exact-title">GR8 Calculator Tools</div>
+            <div class="tagline-exact">
+                60+ Free Online Calculators & Utilities | 100% Free | No Registration
+            </div>
+        </div>
+    </header>
+    
+    <!-- ABOUT US TITLE - HEADER KE NECHE 1 ENTER SPACE -->
+    <div class="about-title-container">
+        <h1 class="about-us-title">About Us</h1>
+    </div>
+    
+    <!-- MAIN CONTENT CONTAINER - NO ADS SPACES -->
+    <div class="main-content-container">
+        <!-- PROFESSIONAL CONTENT BOX - GREEN BORDER -->
+        <div class="professional-content-box">
+            <!-- HIGHLIGHT HEADING -->
+            <h2 class="highlight-heading">
+                Empowering Millions with Free Online Calculation Tools Since 2024
+            </h2>
+            
+            <!-- PROFESSIONAL TEXT CONTENT -->
+            <p class="professional-text">
+                Welcome to <span class="bold-highlight">GR8Calculator</span>, your premier destination for 
+                <span class="bold-highlight">completely free online calculators and utilities</span>. 
+                We are committed to making complex calculations simple, accessible, and understandable for everyone, 
+                regardless of technical background or financial status.
+            </p>
+            
+            <p class="professional-text">
+                Founded with the vision to democratize access to essential calculation tools, 
+                <span class="bold-highlight">GR8Calculator has served over 1 million users worldwide</span> 
+                with accurate, reliable, and easy-to-use tools across multiple domains. Our platform 
+                eliminates the need for expensive software or complicated spreadsheets.
+            </p>
+            
+            <!-- KEY FEATURES SECTION -->
+            <div class="key-features">
+                <h3 class="key-features-title">Why Choose GR8Calculator?</h3>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-text">
+                        <strong>100% Free Forever:</strong> No hidden charges, no subscription fees, 
+                        no premium tiers. Every tool is completely free.
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-text">
+                        <strong>No Registration Required:</strong> Instant access to all tools without 
+                        creating accounts or sharing personal information.
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-text">
+                        <strong>60+ Specialized Tools:</strong> Comprehensive collection covering 
+                        Finance, Health, Education, AI Tools, Real Estate, and Daily Utilities.
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-text">
+                        <strong>Mobile-Optimized Design:</strong> Perfectly responsive interface that 
+                        works flawlessly on all devices - desktop, tablet, and smartphone.
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-text">
+                        <strong>Professional Accuracy:</strong> All calculators are developed and 
+                        regularly updated by domain experts to ensure mathematical precision.
+                    </div>
+                </div>
+            </div>
+            
+            <p class="professional-text">
+                Our diverse toolset includes everything from <span class="bold-highlight">EMI Calculators</span> 
+                for financial planning, <span class="bold-highlight">BMI Calculators</span> for health tracking, 
+                <span class="bold-highlight">AI-powered writing tools</span>, to <span class="bold-highlight">unit converters</span> 
+                and <span class="bold-highlight">educational calculators</span>. Each tool is designed with user 
+                experience as the top priority.
+            </p>
+            
+            <p class="professional-text">
+                At GR8Calculator, we believe that access to useful tools shouldn't be limited by 
+                financial constraints. That's why we've built this platform as a free public resource, 
+                supported by non-intrusive advertising that never interferes with your calculation experience.
+            </p>
+            
+            <!-- CALL TO ACTION -->
+            <div class="cta-section">
+                <p class="cta-text">
+                    Start exploring our 60+ free tools today and experience the GR8Calculator difference!
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
